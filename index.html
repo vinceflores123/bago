@@ -90,15 +90,15 @@
          /* PARA TO SA MGA GESTURE RECOGNTION, CONFIENCE AT HANDEDNESS OUTPUTTTTTTTTTT */
         .videoView p {
             position: absolute; /* Changed to absolute */
-            bottom: 0px; /* Positioned at the bottom of the camera */
+            bottom: -30px; /* Adjust this value to move it closer to the bottom */
             left: 16px; /* Add some left margin */
             width: calc(100% - 32px); /* Full width minus margins */
-            font-size: calc(8px + 1.2vw);
+            font-size: calc(18px + 1.2vw);
             color: white; /* Make text color visible on camera */
             background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent background for readability */
             padding: 0px; /* Add some padding */
             border-radius: 8px; /* Rounded corners */
-            display: none; /* Hidden by default */
+            display: none; /* Hidden by default */            
         }
      /* PARA TO SA MGA GESTURE RECOGNTION, CONFIENCE AT HANDEDNESS OUTPUTTTTTTTTTT */
     
@@ -325,7 +325,7 @@
         let enableWebcamButton;
         let webcamRunning = false;
         const videoHeight = "360px"; /* 360 */
-        const videoWidth = "480px"; /* 480 */
+        const videoWidth = "380px"; /* 480 */
     
         const createGestureRecognizer = async () => {
             const vision = await FilesetResolver.forVisionTasks(
