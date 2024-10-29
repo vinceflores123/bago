@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Voice Recognition App</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 20px;
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            text-align: center;
+        }
+
+        h1 {
+            color: #333;
+        }
+
+        /* PARA TO SA POSITION NG BUTTONSSSSSSSSSSSSSS */
+        button {
+            padding: 10px 15px;
+            margin: 10px auto; /* Center the button */
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+            display: block; /* Ensure each button is on its own line */
+            width: 50%; /* Make buttons 50% width */
+        }
+         /* PARA TO SA POSITION NG BUTTONSSSSSSSSSSSSSS */
+
+        button#start-btn {
+            background-color: #28a745;
+            color: white;
+        }
+
+        button#stop-btn {
+            background-color: #dc3545;
+            color: white;
+        }
+
+        button#clear-btn {
+            background-color: #007bff;
+            color: white;
+        }
+
+        button:disabled {
+            background-color: #ccc;
+            cursor: not-allowed;
+        }
+
+        .output {
+            margin-top: 20px;
+            font-size: 18px;
+            color: #555;
+        }
+
+        .image-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            margin-top: 20px;
+        }
+
+        .image-container img {
+            width: 100px; /* Adjust size as needed */
+            height: auto;
+            margin: 3px; /* Space between images */
+        }
+
+        .space {
+            width: 30px; /* Adjust width of space as needed */
+        }
+
+        .letter-label {
+            font-size: 14px;
+            margin-top: 5px; /* Space between image and letter */
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <h1>Voice Recognition</h1>
+        <button id="start-btn">Start Recognition</button>
+        <button id="clear-btn">Clear</button> <!-- Moved Clear button here -->
+        <button id="stop-btn" disabled>Stop Recognition</button>
+        <div id="output" class="output"></div>
+        <div id="image-container" class="image-container"></div>
+    </div>
+
+    <script>
+        const startBtn = document.getElementById('start-btn');
+        const stopBtn = document.getElementById('stop-btn');
+        const clearBtn = document.getElementById('clear-btn');
+        const output = document.getElementById('output');
+        const imageContainer = document.getElementById('image-container');
+    
+        let recognition;
+        let previousTranscript = ''; // Variable to store the previous transcript
+    
+        // Mapping letters to their respective image URLs
+        const letterImages = {
+            A: 'images/A.jpg',
+            B: 'images/B.jpg',
+            C: 'images/C.jpg',
+            D: 'images/D.jpg',
+            E: 'images/E.jpg',
+            F: 'images/F.jpg',
+            G: 'images/G.jpg',
+            H: 'images/H.jpg',
+            I: 'images/I.jpg',
+            J: 'images/J.jpg',
+            K: 'images/K.jpg',
+            L: 'images/L.jpg',
+            M: 'images/M.jpg',
+            N: 'images/N.jpg',
+            O: 'images/O.jpg',
+            P: 'images/P.jpg',
+            Q: 'images/Q.jpg',
+            R: 'images/R.jpg',
+            S: 'images/S.jpg',
+            T: 'images/T.jpg',
+            U: 'images/U.jpg',
+            V: 'images/V.jpg',
+            W: 'images/W.jpg',
+            X: 'images/X.jpg',
+            Y: 'images/Y.jpg',
+            Z: 'images/Z.jpg'
+        };
+    
+        if ('webkitSpeechRecognition' in window) {
+            recognition = new webkitSpeechRecognition();
+            recognition.continuous = true;
+            recognition.interimResults = true;
+    
+            recognition.onstart = () => {
+                startBtn.disabled = true;
+                stopBtn.disabled = false;
+                output.innerHTML = 'Listening...';
+                imageContainer.innerHTML = ''; // Clear previous images
+            };
+    
+            recognition.onresult = (event) => {
+                let transcript = '';
+                for (let i = event.resultIndex; i < event.results.length; i++) {
+                    transcript += event.results[i][0].transcript.toUpperCase(); // Convert to uppercase
+                }
+    
+                // Only update the output if the new transcript is different
+                if (transcript !== previousTranscript && transcript.trim() !== '') {
+                    output.innerHTML = transcript; // Update the output
+                    previousTranscript = transcript; // Store the current transcript
+                    displayImages(transcript); // Display images based on the transcript
+                }
+            };
+    
+            recognition.onend = () => {
+                startBtn.disabled = false;
+                stopBtn.disabled = true;
+                output.innerHTML += '<br>Stopped Listening.';
+            };
+    
+            startBtn.addEventListener('click', () => {
+                recognition.start();
+            });
+    
+            stopBtn.addEventListener('click', () => {
+                recognition.stop();
+            });
+        } else {
+            alert('Speech Recognition is not supported in this browser.');
+        }
+
+        clearBtn.addEventListener('click', () => {
+            output.innerHTML = ''; // Clear output text
+            imageContainer.innerHTML = ''; // Clear images
+            previousTranscript = ''; // Reset previous transcript
+        });
+    
+        function displayImages(transcript) {
+            imageContainer.innerHTML = ''; // Clear previous images
+            const words = transcript.split(' '); // Split transcript into words
+            for (const word of words) {
+                for (const letter of word) {
+                    if (letterImages[letter]) {
+                        const container = document.createElement('div');
+                        container.style.display = 'flex';
+                        container.style.flexDirection = 'column';
+                        container.style.alignItems = 'center';
+    
+                        const img = document.createElement('img');
+                        img.src = letterImages[letter];
+                        img.alt = letter.toUpperCase();
+    
+                        const label = document.createElement('span');
+                        label.className = 'letter-label';
+                        label.innerText = letter.toUpperCase(); // Display the letter below the image
+    
+                        container.appendChild(img);
+                        container.appendChild(label);
+                        imageContainer.appendChild(container);
+                    }
+                }
+                // Add a space after each word
+                const space = document.createElement('div');
+                space.className = 'space'; // Add space div
+                imageContainer.appendChild(space);
+            }
+        }
+    </script>
+</body>
+</html>
