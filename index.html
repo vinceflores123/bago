@@ -32,7 +32,7 @@
             clear: both;
             display: block;
             transform: rotateY(180deg);
-            width: 100%; /* Make the video responsive */
+            width: 50%; /* Make the video responsive */
             height: auto; /* Maintain aspect ratio */
         }
     
@@ -54,15 +54,14 @@
             display: flex;
             flex-direction: column;
             align-items: center;
-            margin-top: 32px;
+            margin-top: 0px;
             min-height: 500px; /* Adjust as necessary */
             position: relative; /* Added for absolute positioning of output */
             padding: 1em; /* Added padding for mobile spacing */
-            width: 100%; /* Full width */
         }
         
         video {
-            width: 30%;
+            width: 10%;
             height: auto; /* Maintain aspect ratio */
             object-fit: cover; /* Cover the container while maintaining aspect ratio */
         }
@@ -88,43 +87,44 @@
             text-decoration: none;
         }
     
+         /* PARA TO SA MGA GESTURE RECOGNTION, CONFIENCE AT HANDEDNESS OUTPUTTTTTTTTTT */
         .videoView p {
             position: absolute; /* Changed to absolute */
-            bottom: 16px; /* Positioned at the bottom of the camera */
+            bottom: 0px; /* Positioned at the bottom of the camera */
             left: 16px; /* Add some left margin */
             width: calc(100% - 32px); /* Full width minus margins */
             font-size: calc(8px + 1.2vw);
             color: white; /* Make text color visible on camera */
             background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent background for readability */
-            padding: 8px; /* Add some padding */
+            padding: 0px; /* Add some padding */
             border-radius: 8px; /* Rounded corners */
             display: none; /* Hidden by default */
         }
+     /* PARA TO SA MGA GESTURE RECOGNTION, CONFIENCE AT HANDEDNESS OUTPUTTTTTTTTTT */
     
         .canvas {
             z-index: 1;
             position: absolute;
             pointer-events: none;
-            width: 100%; /* Make the canvas responsive */
+            width: 10%; /* Make the canvas responsive */
             height: auto; /* Maintain aspect ratio */
         }
     
 /* Match canvas width with video */
         #webcam {
-            width: 100%; /* Make video responsive */
-            height: auto; /* Maintain aspect ratio */
+            width: 10%; /* Make video responsive */
+            height: 10%; /* Maintain aspect ratio */
         }
         
         .output_canvas {
             position: absolute;
-            transform: rotateY(180deg); /* If needed to flip the canvas */
+          transform: rotateY(180deg); /* If needed to flip the canvas */
             left: 0;
             top: 0;
-            width: 100%;
-            height: 100%;
+            width: 10%;
+            height: 10%;
             pointer-events: none; /* Prevent interactions */
             object-fit: cover; /* Cover the container while maintaining aspect ratio */
-            z-index: 1; /* Ensure canvas is above video */
         }
         
         .output {
@@ -139,12 +139,6 @@
             border-radius: 8px; /* Rounded corners */
         }
         /* Match canvas width with video */
-    
-        .output {
-            display: none;
-            width: 50%;
-            font-size: calc(8px + 1.2vw);
-        }
     
         .mdc-button:disabled {
             opacity: 0.5;
@@ -165,6 +159,7 @@
             margin: 5px 0; /* Reduced margin for the heading */
         }
         
+         /* PARA TO SA IMAGESSSSSSSSSSSSSSS, GESTURE A AND B */
         .detectOnClick img {
             width: 80%; /* Make images responsive */
             max-width: 500px; /* Limit maximum width */
@@ -266,7 +261,7 @@
     </a>
     
     <div style="position: relative; margin-top: 0px;">
-        <video id="webcam" autoplay playsinline></video>
+        <video id="webcam" autoplay playsinline style="height: 160px; width: 380px;"></video>
         <canvas class="output_canvas" id="output_canvas" width="1280" height="720" style="position: absolute; left: 0; top: 0;"></canvas>
         <p id='gesture_output' class="output"></p>
     </div>
@@ -329,8 +324,8 @@
         let runningMode = "IMAGE";
         let enableWebcamButton;
         let webcamRunning = false;
-        const videoHeight = "660px"; /* 360 */
-        const videoWidth = "780px"; /* 480 */
+        const videoHeight = "360px"; /* 360 */
+        const videoWidth = "480px"; /* 480 */
     
         const createGestureRecognizer = async () => {
             const vision = await FilesetResolver.forVisionTasks(
