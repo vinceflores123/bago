@@ -100,9 +100,31 @@
             height: auto; /* Maintain aspect ratio */
         }
     
-        .output_canvas {
-            transform: rotateY(180deg);
+/* Match canvas width with video */
+        #webcam {
+            width: 100%; /* Make video responsive */
+            height: auto; /* Maintain aspect ratio */
         }
+        
+        .output_canvas {
+            width: 100%; /* Match canvas width with video */
+            height: 100%; /* Match canvas height with video */
+            transform: rotateY(180deg); /* If needed to flip the canvas */
+            z-index: 1; /* Ensure canvas is above video */
+        }
+        
+        .output {
+            position: absolute; /* Keep the output text positioned correctly */
+            bottom: 16px; /* Position it at the bottom */
+            left: 16px; /* Add some left margin */
+            width: calc(100% - 32px); /* Full width minus margins */
+            font-size: calc(8px + 1.2vw);
+            color: white; /* Make text color visible */
+            background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent background for readability */
+            padding: 8px; /* Add some padding */
+            border-radius: 8px; /* Rounded corners */
+        }
+        /* Match canvas width with video */
     
         .output {
             display: none;
@@ -173,7 +195,7 @@
                 margin: 1em;
             }
             video {
-                width: 100%;
+                width: 50%;
             }
             .videoView {
                 min-height: 300px;
@@ -188,8 +210,8 @@
                 align-items: center; /* Center the buttons */
             }
         }        
-    </style>   
-    
+    </style>    
+
 </head>
 <body>
     <h1>Hand Gesture and Voice Recognition</h1>
@@ -201,11 +223,11 @@
         <!-- FOR MY GUIDE IMAGESSSSSSSSSSSSSSSSSSSSSSSS -->
         <div class="detectOnClick">
             <h3><br>Letter A Gesture</h3>
-            <img src="A.jpg" alt="Gesture A" />
+            <img src="images/A.jpg" alt="Gesture A" />
         </div>
         <div class="detectOnClick">
             <h3><br>Letter B Gesture</h3>
-            <img src="B.jpg" alt="Gesture B" />
+            <img src="images/B.jpg" alt="Gesture B" />
         </div>
         <!-- FOR MY GUIDE IMAGESSSSSSSSSSSSSSSSSSSSSSSS -->
 
@@ -247,7 +269,8 @@
 <!-- FOR MY CAPTURE AND CLEAR BUTTONNNNNNNNNNNNNNNNNN -->
 
     </section>
-
+    
+<!--JAVA SCRIPTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTT-->
     <!-- Material Components JavaScript -->
     <script src="https://unpkg.com/material-components-web@latest/dist/material-components-web.min.js"></script>
     
