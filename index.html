@@ -49,15 +49,24 @@
             opacity: 0.2;
         }
     
+        /* PARA SA CAMERA PREVIEW FOR ANDROID AND IPHONE OR MOBILE DEVICEEEEEEEEEEEEEEEEE */
         .videoView {
             display: flex;
             flex-direction: column;
             align-items: center;
             margin-top: 32px;
-            min-height: 500px;
+            min-height: 500px; /* Adjust as necessary */
             position: relative; /* Added for absolute positioning of output */
             padding: 1em; /* Added padding for mobile spacing */
+            width: 100%; /* Full width */
         }
+        
+        video {
+            width: 100%;
+            height: auto; /* Maintain aspect ratio */
+            object-fit: cover; /* Cover the container while maintaining aspect ratio */
+        }
+         /* PARA SA CAMERA PREVIEW FOR ANDROID AND IPHONE OR MOBILE DEVICEEEEEEEEEEEEEEEEE */
     
         .videoView button,
         .videoView a {
@@ -107,10 +116,13 @@
         }
         
         .output_canvas {
-            width: 100%; /* Match canvas width with video */
-            height: 100%; /* Match canvas height with video */
-            transform: rotateY(180deg); /* If needed to flip the canvas */
-            z-index: 1; /* Ensure canvas is above video */
+            position: absolute;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none; /* Prevent interactions */
+            object-fit: cover; /* Cover the container while maintaining aspect ratio */
         }
         
         .output {
@@ -223,11 +235,11 @@
         <!-- FOR MY GUIDE IMAGESSSSSSSSSSSSSSSSSSSSSSSS -->
         <div class="detectOnClick">
             <h3><br>Letter A Gesture</h3>
-            <img src="A.jpg" alt="Gesture A" />
+            <img src="images/A.jpg" alt="Gesture A" />
         </div>
         <div class="detectOnClick">
             <h3><br>Letter B Gesture</h3>
-            <img src="B.jpg" alt="Gesture B" />
+            <img src="images/B.jpg" alt="Gesture B" />
         </div>
         <!-- FOR MY GUIDE IMAGESSSSSSSSSSSSSSSSSSSSSSSS -->
 
