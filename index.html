@@ -16,16 +16,18 @@
             --mdc-theme-primary: #007f8b;
             --mdc-theme-on-primary: #f1f3f4;
         }
-
+    
         h1 {
             color: #007f8b;
             text-align: center;
+            font-size: 2em; /* Increase for better visibility */
         }
-
+    
         h2 {
             clear: both;
+            font-size: 1.5em; /* Adjust for better readability */
         }
-
+    
         video {
             clear: both;
             display: block;
@@ -33,20 +35,20 @@
             width: 100%; /* Make the video responsive */
             height: auto; /* Maintain aspect ratio */
         }
-
+    
         section {
             opacity: 1;
             transition: opacity 500ms ease-in-out;
         }
-
+    
         .removed {
             display: none;
         }
-
+    
         .invisible {
             opacity: 0.2;
         }
-
+    
         .videoView {
             display: flex;
             flex-direction: column;
@@ -54,11 +56,13 @@
             margin-top: 32px;
             min-height: 500px;
             position: relative; /* Added for absolute positioning of output */
+            padding: 1em; /* Added padding for mobile spacing */
         }
-        
+    
         .videoView button,
         .videoView a {
-            width: 227px;
+            width: 100%; /* Full width on mobile */
+            max-width: 227px; /* Limit max width */
             height: 68px;
             margin-top: 16px;
             padding: 16px;
@@ -68,12 +72,13 @@
             border-radius: 8px;
             cursor: pointer;
             transition: background-color 0.3s;
+            font-size: 1em; /* Adjust for better visibility */
         }
-
+    
         .videoView a {
             text-decoration: none;
         }
-
+    
         .videoView p {
             position: absolute; /* Changed to absolute */
             bottom: 16px; /* Positioned at the bottom of the camera */
@@ -86,7 +91,7 @@
             border-radius: 8px; /* Rounded corners */
             display: none; /* Hidden by default */
         }
-
+    
         .canvas {
             z-index: 1;
             position: absolute;
@@ -94,23 +99,23 @@
             width: 100%; /* Make the canvas responsive */
             height: auto; /* Maintain aspect ratio */
         }
-
+    
         .output_canvas {
             transform: rotateY(180deg);
         }
-
+    
         .output {
             display: none;
             width: 50%;
             font-size: calc(8px + 1.2vw);
         }
-
+    
         .mdc-button:disabled {
             opacity: 0.5;
             cursor: not-allowed;
         }
-
-        /* FOR MY GUIDE IMAGESSSSSSSSSSSSSSSS */
+    
+        /* FOR MY GUIDE IMAGES */
         #demos {
             text-align: center; /* Center the content */
         }
@@ -125,15 +130,15 @@
         }
         
         .detectOnClick img {
-            width: 500px; /* Set the desired width */
+            width: 80%; /* Make images responsive */
+            max-width: 500px; /* Limit maximum width */
             height: auto; /* Maintain aspect ratio */
             cursor: pointer; /* Change cursor to pointer on hover */
             display: block; /* Ensures the image is on its own line */
             margin: 10px auto; /* Center the image with optional spacing */
         }        
-        /* FOR MY GUIDE IMAGESSSSSSSSSSSSSSSSSSSSSSSS */
-
-        /* FOR MY OUTPUT BOXXXXXXXXXXXXXXXXX, DON SA CAPTURE OUTPUT BOXXX */
+    
+        /* FOR MY OUTPUT BOX */
         #gestureOutputText {
             text-align: center; /* Center the text horizontally */
             resize: none; /* Prevent resizing */
@@ -142,25 +147,48 @@
             min-height: 50px; /* Set a minimum height */
             font-size: 44px; /* Increase font size */
         }
-        /* FOR MY OUTPUT BOXXXXXXXXXXXXXXXXX, DON SA CAPTURE OUTPUT BOXXX */
         
         .output {
             font-size: 54px; /* Increase font size for the gesture output paragraph */
         }   
-
+    
         .button-container {
             display: flex; /* Use flexbox for layout */
             justify-content: center; /* Center the buttons */
             margin-top: 16px; /* Space above the button container */
+            flex-wrap: wrap; /* Allow wrapping for small screens */
         }
         
-         /* FOR MY CAPTURE BUTTON AND CLEAR BUTTONNNNNNNNNNNNNNN */
+        /* FOR MY CAPTURE BUTTON AND CLEAR BUTTON */
         .button-container button {
             margin: 0 10px; /* Add space between buttons */
+            padding: 10px 20px; /* Increase padding for touch targets */
+            font-size: 1em; /* Adjust font size */
+            min-width: 120px; /* Set minimum width for buttons */
         }        
-         /* FOR MY CAPTURE BUTTON AND CLEAR BUTTONNNNNNNNNNNNNNN */
-
-    </style>
+    
+        /* Media Queries for Mobile Devices */
+        @media (max-width: 600px) {
+            body {
+                margin: 1em;
+            }
+            video {
+                width: 100%;
+            }
+            .videoView {
+                min-height: 300px;
+                padding: 1em; /* Adjust padding for mobile */
+            }
+            .videoView button,
+            .videoView a {
+                font-size: 1.2em; /* Increase button text size for touch */
+            }
+            .button-container {
+                flex-direction: column; /* Stack buttons vertically on small screens */
+                align-items: center; /* Center the buttons */
+            }
+        }        
+    </style>   
     
 </head>
 <body>
