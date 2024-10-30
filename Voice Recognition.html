@@ -3,6 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="voice icon.jpg" type="image/x-icon"> <!-- Favicon -->
     <title>Voice Recognition App</title>
     <style>
         body {
@@ -11,7 +12,7 @@
             margin: 0;
             padding: 20px;
         }
-
+        
         .container {
             max-width: 600px;
             margin: 0 auto;
@@ -21,12 +22,11 @@
             box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
             text-align: center;
         }
-
+        
         h1 {
             color: #333;
         }
-
-        /* PARA TO SA POSITION NG BUTTONSSSSSSSSSSSSSS */
+        
         button {
             padding: 10px 15px;
             margin: 10px auto; /* Center the button */
@@ -37,59 +37,101 @@
             display: block; /* Ensure each button is on its own line */
             width: 50%; /* Make buttons 50% width */
         }
-         /* PARA TO SA POSITION NG BUTTONSSSSSSSSSSSSSS */
-
+        
         button#start-btn {
             background-color: #28a745;
             color: white;
         }
-
+        
         button#stop-btn {
             background-color: #dc3545;
             color: white;
         }
-
+        
         button#clear-btn {
             background-color: #007bff;
             color: white;
         }
-
+        
         button:disabled {
             background-color: #ccc;
             cursor: not-allowed;
         }
-
+        
         .output {
             margin-top: 20px;
             font-size: 18px;
             color: #555;
         }
-
+        
         .image-container {
             display: flex;
             flex-wrap: wrap;
             justify-content: center;
             margin-top: 20px;
         }
-
+        
         .image-container img {
             width: 100px; /* Adjust size as needed */
             height: auto;
             margin: 3px; /* Space between images */
         }
-
+        
         .space {
             width: 30px; /* Adjust width of space as needed */
         }
-
+        
         .letter-label {
             font-size: 14px;
             margin-top: 5px; /* Space between image and letter */
         }
+        
+        a {
+            text-decoration: none; /* Remove underline from link */
+            display: inline-flex; /* Align icon */
+            align-items: center; /* Center icon vertically */
+            margin-bottom: 20px; /* Space below the icon */
+        }
+        
+        /* Media Queries for Responsiveness */
+        @media (max-width: 768px) {
+            button {
+                width: 80%; /* Make buttons wider on smaller screens */
+                font-size: 14px; /* Smaller font size */
+            }
+        
+            h1 {
+                font-size: 24px; /* Smaller heading on mobile */
+            }
+        
+            .image-container img {
+                width: 80px; /* Smaller images on mobile */
+            }
+        }
+        
+        @media (max-width: 480px) {
+            button {
+                width: 90%; /* Make buttons nearly full width */
+                font-size: 12px; /* Even smaller font size */
+            }
+        
+            h1 {
+                font-size: 20px; /* Smaller heading */
+            }
+        
+            .image-container img {
+                width: 60px; /* Even smaller images on very small screens */
+            }
+        }
+        
     </style>
 </head>
 
 <body>
+    <a href="Hand Gesture.html">
+        <img src="images/back.png" alt="Back" style="width: 40px; height: 40px; vertical-align: middle; margin-right: 5px; margin-right: 5px;" />
+    </a>
+
     <div class="container">
         <h1>Voice Recognition</h1>
         <button id="start-btn">Start Recognition</button>
@@ -111,32 +153,32 @@
     
         // Mapping letters to their respective image URLs
         const letterImages = {
-            A: 'A.jpg',
-            B: 'B.jpg',
-            C: 'C.jpg',
-            D: 'D.jpg',
-            E: 'E.jpg',
-            F: 'F.jpg',
-            G: 'G.jpg',
-            H: 'H.jpg',
-            I: 'I.jpg',
-            J: 'J.jpg',
-            K: 'K.jpg',
-            L: 'L.jpg',
-            M: 'M.jpg',
-            N: 'N.jpg',
-            O: 'O.jpg',
-            P: 'P.jpg',
-            Q: 'Q.jpg',
-            R: 'R.jpg',
-            S: 'S.jpg',
-            T: 'T.jpg',
-            U: 'U.jpg',
-            V: 'V.jpg',
-            W: 'W.jpg',
-            X: 'X.jpg',
-            Y: 'Y.jpg',
-            Z: 'Z.jpg'
+            A: 'images/A.jpg',
+            B: 'images/B.jpg',
+            C: 'images/C.jpg',
+            D: 'images/D.jpg',
+            E: 'images/E.jpg',
+            F: 'images/F.jpg',
+            G: 'images/G.jpg',
+            H: 'images/H.jpg',
+            I: 'images/I.jpg',
+            J: 'images/J.jpg',
+            K: 'images/K.jpg',
+            L: 'images/L.jpg',
+            M: 'images/M.jpg',
+            N: 'images/N.jpg',
+            O: 'images/O.jpg',
+            P: 'images/P.jpg',
+            Q: 'images/Q.jpg',
+            R: 'images/R.jpg',
+            S: 'images/S.jpg',
+            T: 'images/T.jpg',
+            U: 'images/U.jpg',
+            V: 'images/V.jpg',
+            W: 'images/W.jpg',
+            X: 'images/X.jpg',
+            Y: 'images/Y.jpg',
+            Z: 'images/Z.jpg'
         };
     
         if ('webkitSpeechRecognition' in window) {
@@ -192,31 +234,33 @@
             imageContainer.innerHTML = ''; // Clear previous images
             const words = transcript.split(' '); // Split transcript into words
             for (const word of words) {
+                const wordContainer = document.createElement('div'); // Create a container for each word
+                wordContainer.style.display = 'flex'; // Use flexbox for horizontal alignment
+                wordContainer.style.alignItems = 'center'; // Center letters vertically
+                wordContainer.style.marginBottom = '10px'; // Space between words
+        
                 for (const letter of word) {
                     if (letterImages[letter]) {
-                        const container = document.createElement('div');
-                        container.style.display = 'flex';
-                        container.style.flexDirection = 'column';
-                        container.style.alignItems = 'center';
-    
+                        const letterContainer = document.createElement('div'); // Create a container for each letter
+                        letterContainer.style.display = 'flex';
+                        letterContainer.style.flexDirection = 'column'; // Stack image and label vertically
+                        letterContainer.style.alignItems = 'center'; // Center each letter
+        
                         const img = document.createElement('img');
                         img.src = letterImages[letter];
                         img.alt = letter.toUpperCase();
-    
+        
                         const label = document.createElement('span');
                         label.className = 'letter-label';
                         label.innerText = letter.toUpperCase(); // Display the letter below the image
-    
-                        container.appendChild(img);
-                        container.appendChild(label);
-                        imageContainer.appendChild(container);
+        
+                        letterContainer.appendChild(img);
+                        letterContainer.appendChild(label);
+                        wordContainer.appendChild(letterContainer); // Append letter container to word container
                     }
                 }
-                // Add a space after each word
-                const space = document.createElement('div');
-                space.className = 'space'; // Add space div
-                imageContainer.appendChild(space);
-            }
+                imageContainer.appendChild(wordContainer); // Append the word container to the image container
+            }        
         }
     </script>
 </body>
