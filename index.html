@@ -3,7 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Hand Gesture Recognition</title>
+    <link rel="icon" href="icon.png" type="image/x-icon"> <!-- Favicon -->
+    <title>Sign Language and Voice Recognition</title>
 
     <!-- Material Components CSS -->
     <link href="https://unpkg.com/material-components-web@latest/dist/material-components-web.min.css" rel="stylesheet">
@@ -197,6 +198,28 @@
             font-size: 1em; /* Adjust font size */
             min-width: 120px; /* Set minimum width for buttons */
         }        
+
+        /* Media Queries for Mobile Devices */
+        @media (max-width: 768px) {
+            body {
+                margin: 1em;
+            }
+            video {
+                width: 10%;
+            }
+            .videoView {
+                min-height: 200px;
+                padding: 1em; /* Adjust padding for mobile */
+            }
+            .videoView button,
+            .videoView a {
+                font-size: 1.2em; /* Increase button text size for touch */
+            }
+            .button-container {
+                flex-direction: column; /* Stack buttons vertically on small screens */
+                align-items: center; /* Center the buttons */
+            }
+        }
     
         /* Media Queries for Mobile Devices */
         @media (max-width: 600px) {
@@ -218,32 +241,56 @@
                 flex-direction: column; /* Stack buttons vertically on small screens */
                 align-items: center; /* Center the buttons */
             }
-        }        
+        }
+
+        /* Media Queries for Mobile Devices */
+        @media (max-width: 480px) {
+            body {
+                margin: 1em;
+            }
+            video {
+                width: 10%;
+            }
+            .videoView {
+                min-height: 200px;
+                padding: 1em; /* Adjust padding for mobile */
+            }
+            .videoView button,
+            .videoView a {
+                font-size: 1.2em; /* Increase button text size for touch */
+            }
+            .button-container {
+                flex-direction: column; /* Stack buttons vertically on small screens */
+                align-items: center; /* Center the buttons */
+            }
+        }
+
     </style>    
 
 </head>
 <body>
-    <h1>Hand Gesture and Voice Recognition</h1>
+    <h1>Sign Language and Voice Recognition</h1>
 
     <section id="demos" class="invisible">
-        <h2>Demo: Recognize gestures</h2>
-        <p><em>Guide Example of Hand Gestures to present</em> in our camera preview</p>
+        <h2>Demo: Recognize Sign Language</h2>
+        <p><em>Guide Example of Sign Languages to present</em> in our camera preview</p>
 
         <!-- FOR MY GUIDE IMAGESSSSSSSSSSSSSSSSSSSSSSSS -->
         <div class="detectOnClick">
             <h3><br>Letter A Gesture</h3>
-            <img src="A.jpg" alt="Gesture A" />
+            <img src="images/A.jpg" alt="Gesture A" />
         </div>
+
         <div class="detectOnClick">
             <h3><br>Letter B Gesture</h3>
-            <img src="B.jpg" alt="Gesture B" />
+            <img src="images/B.jpg" alt="Gesture B" />
         </div>
         <!-- FOR MY GUIDE IMAGESSSSSSSSSSSSSSSSSSSSSSSS -->
 
-        <h2><br>Demo: Camera continuous Hand Gesture detection</h2>
+        <h2><br>Demo: Camera continuous Sign Language detection</h2>
         <p>Use your hand to make gestures in front of the camera to get gesture classification. Click <b>enable camera</b> below and grant access to the camera if prompted.</p>
 
-       <!-- FOR MY TWO BUTTONSSSSSSSSSSSSSSSSSSSSSS -->
+    <!-- FOR MY TWO BUTTONSSSSSSSSSSSSSSSSSSSSSS -->
 <div id="liveView" class="videoView">
     <button id="webcamButton" class="mdc-button mdc-button--raised">
         <span class="mdc-button__ripple"></span>
@@ -255,6 +302,7 @@
         <span class="mdc-button__label">OPEN VOICE RECOGNITION</span>
     </a>
 
+    <link rel="icon" href="library icon.png" type="image/x-icon"> <!-- Favicon -->
     <a href="Library.html" class="mdc-button mdc-button--raised">
         <span class="mdc-button__ripple"></span>
         <span class="mdc-button__label">OPEN LIBRARY</span>
@@ -284,6 +332,7 @@
     <script src="https://unpkg.com/material-components-web@latest/dist/material-components-web.min.js"></script>
     
     <script type="module">
+        
         /* FOR CAPTURING LETTER OUTPUTTTTTTTTTTTTTTTTTTTTTTTTTT */   
         const captureButton = document.getElementById("captureButton");
         const gestureOutputText = document.getElementById("gestureOutputText");
@@ -319,6 +368,7 @@
             DrawingUtils
         } from "https://cdn.jsdelivr.net/npm/@mediapipe/tasks-vision@0.10.3";
     
+        /* YUNG SIZE NG CAMERA WEBCAMMMMMMMMMMMMMMMMMMM */
         const demosSection = document.getElementById("demos");
         let gestureRecognizer;
         let runningMode = "IMAGE";
@@ -326,6 +376,7 @@
         let webcamRunning = false;
         const videoHeight = "360px"; /* 360 */
         const videoWidth = "380px"; /* 480 */
+         /* YUNG SIZE NG CAMERA WEBCAMMMMMMMMMMMMMMMMMMM */
     
         const createGestureRecognizer = async () => {
             const vision = await FilesetResolver.forVisionTasks(
@@ -393,6 +444,7 @@
             console.warn("getUserMedia() is not supported by your browser");
         }
     
+        /* PARA MAOPEN YUNG CAMERA WEBCAMMMMMMMMMMMMMMMMMMMM */ 
         function enableCam(event) {
             if (!gestureRecognizer) {
                 alert("Please wait for gestureRecognizer to load");
@@ -409,6 +461,7 @@
                 video.addEventListener("loadeddata", predictWebcam);
             });
         }
+         /* PARA MAOPEN YUNG CAMERA WEBCAMMMMMMMMMMMMMMMMMMMM */ 
     
         let lastVideoTime = -1;
         let results = undefined;
