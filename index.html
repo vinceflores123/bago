@@ -703,7 +703,7 @@ Terms and Conditions for Sign Language and Voice Recognition Translator
         }
         /* FOR LANDMARKS AND BOUNDING BOXXXXXXXXXXXX */ 
 
-        // Function to check the conditions and enable the "Proceed" button
+       // Function to check the conditions and enable the "Proceed" button
 function checkConditions() {
     const proceedButton = document.getElementById("proceedButton");
     const termsText = document.getElementById("termsText");
@@ -725,16 +725,34 @@ document.getElementById("termsText").addEventListener("scroll", checkConditions)
 
 // Function to handle the click on the "Proceed" button
 document.getElementById("proceedButton").addEventListener("click", function() {
-    // For example, close the modal when the button is clicked
+    // Set the flag in localStorage to indicate the user has accepted the terms
+    localStorage.setItem("TermsAccepted", "true");
+
+    // Close the modal when the button is clicked
     document.getElementById("termsModal").style.display = "none";
 });
 
-// Open modal (for demonstration purpose)
-document.getElementById("termsModal").style.display = "block";
+// Function to check if Terms and Conditions have been accepted
+function checkTermsStatus() {
+    const termsAccepted = localStorage.getItem("TermsAccepted");
 
-// For testing purposes, automatically disable the button on modal open
-document.getElementById("proceedButton").disabled = true;
+    if (termsAccepted === "true") {
+        // If terms are accepted, hide the modal
+        document.getElementById("termsModal").style.display = "none";
+    } else {
+        // If terms are not accepted, show the modal
+        document.getElementById("termsModal").style.display = "block";
+    }
+}
 
+// Run the check on page load to see if the modal should be shown or not
+window.onload = function() {
+    // Check if the terms were accepted before
+    checkTermsStatus();
+
+    // Automatically disable the button on modal open
+    document.getElementById("proceedButton").disabled = true;
+};
 
     </script>
     
