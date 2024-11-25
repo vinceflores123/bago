@@ -265,7 +265,7 @@
             }
         }
 
-/* Modal styles */
+        /* Modal styles */
 .modal {
     display: none; /* Hidden by default */
     position: fixed; /* Stay in place */
@@ -343,6 +343,7 @@ button:disabled {
     background-color: #ccc; /* Disabled state */
     cursor: not-allowed;
 }
+
     </style>    
 
 </head>
@@ -531,11 +532,11 @@ Terms and Conditions for Sign Language and Voice Recognition Translator
     
         const createGestureRecognizer = async () => {
             const vision = await FilesetResolver.forVisionTasks(
-                "https://cdn.jsdelivr.net/npm/@mediapipe/tasks-vision@0.10.3/wasm"
+            "https://cdn.jsdelivr.net/npm/@mediapipe/tasks-vision@0.10.3/wasm"
             );
             gestureRecognizer = await GestureRecognizer.createFromOptions(vision, {
-                baseOptions: {
-                    modelAssetPath: "https://raw.githubusercontent.com/vinceflores123/datasets/main/datasets%20a%20to%20z2.task",
+            baseOptions: {
+                modelAssetPath: "https://raw.githubusercontent.com/vinceflores123/datasets/main/datasets%20a%20to%20z2.task",
                     delegate: "CPU"
                 },
             });
@@ -687,56 +688,41 @@ Terms and Conditions for Sign Language and Voice Recognition Translator
         }
         /* FOR LANDMARKS AND BOUNDING BOXXXXXXXXXXXX */ 
 
-       // Function to check the conditions and enable the "Proceed" button
-function checkConditions() {
-    const proceedButton = document.getElementById("proceedButton");
-    const termsText = document.getElementById("termsText");
-    const acceptCheckbox = document.getElementById("acceptTerms");
-
-    // Check if checkbox is checked and user has scrolled to the bottom
-    if (acceptCheckbox.checked && (termsText.scrollHeight - termsText.scrollTop === termsText.clientHeight)) {
-        proceedButton.disabled = false; // Enable button
-    } else {
-        proceedButton.disabled = true; // Disable button
-    }
-}
-
-// Event listener for checkbox to check the conditions
-document.getElementById("acceptTerms").addEventListener("change", checkConditions);
-
-// Event listener for scroll event to check the conditions
-document.getElementById("termsText").addEventListener("scroll", checkConditions);
-
-// Function to handle the click on the "Proceed" button
-document.getElementById("proceedButton").addEventListener("click", function() {
-    // Set the flag in localStorage to indicate the user has accepted the terms
-    localStorage.setItem("TermsAccepted", "true");
-
-    // Close the modal when the button is clicked
-    document.getElementById("termsModal").style.display = "none";
-});
-
-// Function to check if Terms and Conditions have been accepted
-function checkTermsStatus() {
-    const termsAccepted = localStorage.getItem("TermsAccepted");
-
-    if (termsAccepted === "true") {
-        // If terms are accepted, hide the modal
-        document.getElementById("termsModal").style.display = "none";
-    } else {
-        // If terms are not accepted, show the modal
-        document.getElementById("termsModal").style.display = "block";
-    }
-}
-
-// Run the check on page load to see if the modal should be shown or not
-window.onload = function() {
-    // Check if the terms were accepted before
-    checkTermsStatus();
-
-    // Automatically disable the button on modal open
-    document.getElementById("proceedButton").disabled = true;
-};
+        window.onload = function() {
+            const termsAccepted = localStorage.getItem("TermsAccepted");
+            if (termsAccepted !== "false") {
+                document.getElementById("termsModal").style.display = "block";
+            }
+            document.getElementById("proceedButton").disabled = true;
+        };
+        
+        // Listen for checkbox and scrolling actions to enable the "Proceed" button
+        document.getElementById("acceptTerms").addEventListener("change", checkConditions);
+        document.getElementById("termsText").addEventListener("scroll", checkConditions);
+        
+        function checkConditions() {
+            const proceedButton = document.getElementById("proceedButton");
+            const termsText = document.getElementById("termsText");
+            const acceptCheckbox = document.getElementById("acceptTerms");
+        
+            // Allow some small tolerance for the scroll position (e.g., 5px)
+            const scrollPosition = termsText.scrollTop + termsText.clientHeight;
+            const scrollHeight = termsText.scrollHeight;
+        
+            const tolerance = 5;  // Small buffer to allow for rounding differences
+        
+            // Enable the button if both conditions are met
+            if (acceptCheckbox.checked && (scrollHeight - scrollPosition <= tolerance)) {
+                proceedButton.disabled = false;
+            } else {
+                proceedButton.disabled = true;
+            }
+        }
+        
+        document.getElementById("proceedButton").addEventListener("click", function() {
+            localStorage.setItem("TermsAccepted", "true");
+            document.getElementById("termsModal").style.display = "none";
+        });        
 
     </script>
     
