@@ -690,7 +690,7 @@ Terms and Conditions for Sign Language and Voice Recognition Translator
 
         window.onload = function() {
             const termsAccepted = localStorage.getItem("TermsAccepted");
-            if (termsAccepted !== "false") {
+            if (termsAccepted !== "true") {
                 document.getElementById("termsModal").style.display = "block";
             }
             document.getElementById("proceedButton").disabled = true;
