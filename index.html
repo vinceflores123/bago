@@ -265,6 +265,100 @@
             }
         }
 
+/* Modal styles */
+.modal {
+    display: none; /* Hidden by default */
+    position: fixed; /* Stay in place */
+    z-index: 1; /* Sit on top */
+    left: 0;
+    top: 0;
+    width: 100%; /* Full width */
+    height: 100%; /* Full height */
+    background-color: rgba(0, 0, 0, 0.4); /* Black with opacity */
+    padding-top: 60px; /* Add some padding */
+    box-sizing: border-box;
+    overflow: hidden; /* Prevent background scrolling */
+    text-align: center; /* Center the content */
+}
+
+/* Modal styles */
+.modal {
+    display: none; /* Hidden by default */
+    position: fixed; /* Stay in place */
+    z-index: 1; /* Sit on top */
+    left: 0;
+    top: 0;
+    width: 100%; /* Full width */
+    height: 100%; /* Full height */
+    background-color: rgba(0, 0, 0, 0.4); /* Black with opacity */
+    padding-top: 60px; /* Add some padding */
+    box-sizing: border-box;
+    overflow: hidden; /* Prevent background scrolling */
+    text-align: center; /* Center the content */
+}
+
+/* Modal content box */
+.modal-content {
+    background-color: #fff;
+    margin: 5% auto; /* Center the modal in the page */
+    padding: 20px;
+    border: 1px solid #888;
+    width: 80%; /* Set a max width */
+    max-width: 600px; /* Max width for large screens */
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 80vh;
+}
+
+/* Heading styles */
+.modal-content h2 {
+    font-size: 24px;
+    margin-bottom: 20px;
+}
+
+/* Container for scrollable terms */
+#termsTextContainer {
+    flex-grow: 1;
+    overflow-y: auto;
+    margin-bottom: 20px;
+}
+
+/* Terms text styling */
+#termsText {
+    width: 100%; /* Full width inside modal */
+    font-size: 14px;
+    padding: 10px;
+    border: 1px solid #ccc;
+    resize: none;
+    height: 300px; /* Fixed height for scroll */
+    box-sizing: border-box;
+}
+
+/* Styling the checkbox and button */
+label {
+    font-size: 16px;
+    display: block;
+    margin-top: 10px;
+}
+
+button {
+    font-size: 16px;
+    padding: 10px 20px;
+    margin-top: 10px;
+    cursor: pointer;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    align-self: center;
+}
+
+button:disabled {
+    background-color: #ccc; /* Disabled state */
+    cursor: not-allowed;
+}
     </style>    
 
 </head>
@@ -324,6 +418,79 @@
     <button id="clearButton" class="mdc-button mdc-button--raised" style="margin-top: 16px;">CLEAR OUTPUT</button>
 </div>        
 <!-- FOR MY CAPTURE AND CLEAR BUTTONNNNNNNNNNNNNNNNNN -->
+
+<!-- Terms and Conditions Modal -->
+<div id="termsModal" class="modal">
+    <div class="modal-content">
+        <h2>Terms and Conditions</h2>
+        <p>By using this website, you agree to the following terms...</p>
+        <div id="termsTextContainer">
+            <textarea id="termsText" readonly>
+Terms and Conditions for Sign Language and Voice Recognition Translator
+    1. Introduction
+    Welcome to our Sign Language and Voice Recognition Translator platform (the "Service"), provided by [Your Company Name], a company registered in [Your Country]. By accessing or using the Service, you agree to comply with and be bound by the following Terms and Conditions. If you do not agree with any of these terms, you must not use the Service.
+    
+    2. Use of Service
+    You may use the Service only for lawful purposes and in accordance with these Terms. By using the Service, you agree to:
+    
+    Use the translator solely for the purpose of translating sign language and voice to text.
+    Not misuse the Service or attempt to interfere with its proper operation.
+    Not use the Service to engage in any illegal, abusive, or harmful activity, such as harassment, hate speech, or the dissemination of malicious content.
+    3. User Responsibilities
+    While using the Service, you are responsible for:
+    
+    Providing accurate and truthful information (if applicable, though you mentioned there's no login system).
+    Ensuring that the content you input (voice, sign language gestures) does not violate any third-party rights or local laws.
+    Complying with applicable laws, regulations, and any guidelines associated with the Service.
+    Maintaining the confidentiality of any data you may input into the Service.
+    4. Data Privacy and Security
+    Your privacy is important to us. We do not collect personal data such as names, email addresses, or payment information unless explicitly stated in a future feature or service upgrade. However, the following applies:
+    
+    Data Collected: The platform may collect non-personal data such as voice and gesture inputs for the purpose of translating sign language and voice to text.
+    Storage and Usage of Data: The voice or gesture inputs processed by the application are used to provide translation services and are stored temporarily for this purpose.
+    Third-Party Services: We may integrate third-party services for features like voice recognition or speech-to-text functionality. We are not responsible for the privacy policies or practices of third-party services.
+    Security: We employ reasonable security measures (e.g., SSL encryption) to protect the data transmitted through the platform. However, no system can be 100% secure, and we cannot guarantee absolute protection.
+    5. Intellectual Property
+    All intellectual property rights related to the Service, including but not limited to logos, text, designs, algorithms, and any software or content used in the application, are owned by [Your Company Name] or its licensors.
+    You may not copy, distribute, modify, or create derivative works based on any content from the Service unless specifically permitted by these Terms.
+    6. Limitations of Liability
+    The Service is provided "as is" without any warranties, whether express or implied, regarding the accuracy, completeness, or availability of the translation results.
+    In no event shall [Your Company Name] or its affiliates be held liable for any indirect, incidental, special, or consequential damages arising from the use of or inability to use the Service, including but not limited to loss of data or profits.
+    You acknowledge and agree that the voice and sign language translation may not always be accurate and may not capture all gestures or voice nuances accurately.
+    7. User-Generated Content
+    If the Service allows users to submit content (e.g., images of sign language gestures or voice recordings):
+    
+    You retain ownership of your content but grant [Your Company Name] a non-exclusive, worldwide, royalty-free license to use, store, and process your content for the purpose of providing the Service.
+    You represent and warrant that you have all necessary rights to the content you submit and that such content does not infringe on the rights of any third party.
+    8. Terms of Use Modifications
+    We may update or modify these Terms at any time. Any changes will be effective immediately upon posting on the Service's website. You are responsible for reviewing the Terms periodically to stay informed of any updates.
+    
+    9. Termination
+    [Your Company Name] reserves the right to suspend or terminate access to the Service at any time, without notice, for any reason, including but not limited to:
+    
+    Violations of these Terms and Conditions.
+    Disruption or interference with the functioning of the Service.
+    Misuse of the Service.
+    10. Governing Law
+    These Terms and Conditions are governed by the laws of [Your Country] and any disputes shall be resolved in the courts located in [Your City or Country].
+    
+    11. Contact Information
+    If you have any questions about these Terms and Conditions, please contact us at:
+    
+    Email: [Your Contact Email]
+    Address: [Your Company Address]
+            </textarea>
+        </div>
+        <div>
+            <label for="acceptTerms">
+                <input type="checkbox" id="acceptTerms"> I accept the terms and conditions
+            </label>
+        </div>
+        <div>
+            <button id="proceedButton" disabled>Proceed</button>
+        </div>
+    </div>
+</div>
 
     </section>
     
@@ -535,7 +702,40 @@
             }
         }
         /* FOR LANDMARKS AND BOUNDING BOXXXXXXXXXXXX */ 
-        
+
+        // Function to check the conditions and enable the "Proceed" button
+function checkConditions() {
+    const proceedButton = document.getElementById("proceedButton");
+    const termsText = document.getElementById("termsText");
+    const acceptCheckbox = document.getElementById("acceptTerms");
+
+    // Check if checkbox is checked and user has scrolled to the bottom
+    if (acceptCheckbox.checked && (termsText.scrollHeight - termsText.scrollTop === termsText.clientHeight)) {
+        proceedButton.disabled = false; // Enable button
+    } else {
+        proceedButton.disabled = true; // Disable button
+    }
+}
+
+// Event listener for checkbox to check the conditions
+document.getElementById("acceptTerms").addEventListener("change", checkConditions);
+
+// Event listener for scroll event to check the conditions
+document.getElementById("termsText").addEventListener("scroll", checkConditions);
+
+// Function to handle the click on the "Proceed" button
+document.getElementById("proceedButton").addEventListener("click", function() {
+    // For example, close the modal when the button is clicked
+    document.getElementById("termsModal").style.display = "none";
+});
+
+// Open modal (for demonstration purpose)
+document.getElementById("termsModal").style.display = "block";
+
+// For testing purposes, automatically disable the button on modal open
+document.getElementById("proceedButton").disabled = true;
+
+
     </script>
     
 </body>
